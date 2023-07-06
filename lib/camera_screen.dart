@@ -21,7 +21,6 @@ class _CameraScreenState extends State<CameraScreen> {
           style: GoogleFonts.mukta(),
         ),
       ),
-      // body: const QoinSaasLivenessCamera(),
       body: QoinSaasLivenessCamera(
         onControllerCreated: (controller) {
           cameraController = controller;

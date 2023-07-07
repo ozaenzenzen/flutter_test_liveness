@@ -36,8 +36,8 @@ dependencies:
   camera:
   qoin_saas_liveness:
     path: ../qoin_saas_liveness
-  face_sdk:
-    path: ../face_sdk
+  # face_sdk:
+  #   path: ../face_sdk
 
 dev_dependencies:
   flutter_lints: ^2.0.0

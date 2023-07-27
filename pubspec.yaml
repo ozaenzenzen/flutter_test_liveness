@@ -35,7 +35,10 @@ dependencies:
   google_fonts: 4.0.4
   camera:
   qoin_saas_liveness:
-    path: ../qoin_saas_liveness
+    git:
+      url: https://yustanj:XX4anzTGC3FKUYrA6yzd@bitbucket.org/loyaltoid/saas_ml_kit.git
+      ref: master
+    # path: ../qoin_saas_liveness
   # face_sdk:
   #   path: ../face_sdk
 
@@ -44,6 +47,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+dependency_overrides: 
+  qoin_saas_liveness:
+    path: ../qoin_saas_liveness
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.

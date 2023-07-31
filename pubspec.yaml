@@ -31,7 +31,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
-  get: 4.6.5
   google_fonts: 4.0.4
   camera:
   qoin_saas_liveness:

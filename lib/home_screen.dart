@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:camera/camera.dart';
-// import 'package:face_sdk/ui/screen/liveness_screen.dart';
-// import 'package:face_sdk/ui/widget/oval_clip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_liveness/camera_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -102,43 +100,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            // return const QoinSaasOCRCamera();
                             return QoinSaasOCRCamera(
-                              // actionAfterTakePicture: (base64Image, textValueInsideImage) {
-                              //   return Container(
-                              //     height: MediaQuery.of(context).size.height,
-                              //     width: MediaQuery.of(context).size.width,
-                              //     color: Colors.white,
-                              //     child: Column(
-                              //       children: [
-                              //         Image.asset(
-                              //           base64Image,
-                              //           height: 150,
-                              //           width: 150,
-                              //         ),
-                              //         const SizedBox(height: 30),
-                              //         Text(
-                              //           textValueInsideImage,
-                              //         ),
-                              //       ],
-                              //     ),
-                              //   );
-                              // },
-                              getDataString: (String data) {
-                                setState(() {
-                                  dataOcr = data;
-                                });
+                              onTakePict: (String base64Image) {
+                                debugPrint('base64Image output $base64Image');
                               },
-                              // captureButton: Container(
-                              //   height: 30,
-                              //   width: 30,
-                              //   color: Colors.blue,
-                              // ),
                             );
-                            // return Test2Widget();
-                            // return const CameraScreen(
-                            //   testMode: false,
-                            // );
                           },
                         ),
                       );
@@ -165,13 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   dataGambar = image;
                                 });
                               },
-                              // gambar: (String gambar) {
-                              //   setState(() {
-                              //     dataGambar = gambar;
-                              //   });
-                              // },
                             );
-                            // return const QoinSaasOCRCamera();
                             // return const TextRecognizerView();
                           },
                         ),

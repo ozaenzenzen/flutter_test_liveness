@@ -41,6 +41,7 @@ class _CameraLivenessScreenState extends State<CameraLivenessScreen> {
         debugPrint('tempImage ${tempImage.path}');
         widget.callback!.call(captured!);
         // cameraController?.dispose();
+        // ignore: use_build_context_synchronously
         Navigator.pop(context);
       } else {
         //
@@ -55,7 +56,7 @@ class _CameraLivenessScreenState extends State<CameraLivenessScreen> {
       );
       if (data != null) {
         captured = data;
-        debugPrint('captured ${captured}');
+        debugPrint('captured $captured');
         widget.callback!.call(captured!);
         // ignore: use_build_context_synchronously
         Navigator.pop(context);

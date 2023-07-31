@@ -28,7 +28,7 @@ class _CameraOCRScreenState extends State<CameraOCRScreen> {
       body: (widget.testMode)
           ? Stack(
               children: [
-                QoinSaasOCRCamera(
+                SaasOCRCamera(
                   captureButton: SizedBox(
                     height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width,
@@ -75,7 +75,7 @@ class _CameraOCRScreenState extends State<CameraOCRScreen> {
             )
           : Stack(
               children: [
-                QoinSaasOCRCamera(
+                SaasOCRCamera(
                   onControllerCreated: (controller) {
                     cameraController = controller;
                   },

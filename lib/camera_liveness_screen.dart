@@ -80,7 +80,7 @@ class _CameraLivenessScreenState extends State<CameraLivenessScreen> {
       body: (widget.testMode)
           ? Stack(
               children: [
-                QoinSaasLivenessCamera(
+                SaasLivenessCamera(
                   onControllerCreated: (controller) {
                     cameraController = controller;
                   },
@@ -147,7 +147,7 @@ class _CameraLivenessScreenState extends State<CameraLivenessScreen> {
                 ),
               ],
             )
-          : QoinSaasLivenessCamera(
+          : SaasLivenessCamera(
               onControllerCreated: (controller) {
                 cameraController = controller;
               },

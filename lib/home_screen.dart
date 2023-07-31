@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return const QoinSaasOCRCameraMLKitVer();
+                            return const SaasOCRCameraMLKitVer();
                           },
                         ),
                       );

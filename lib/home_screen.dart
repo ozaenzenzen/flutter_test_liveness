@@ -156,8 +156,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return const CameraScreen(
+                            return CameraScreen(
                               testMode: true,
+                              callback: (String image) {
+                                setState(() {
+                                  dataGambar = image;
+                                });
+                              },
                               // gambar: (String gambar) {
                               //   setState(() {
                               //     dataGambar = gambar;

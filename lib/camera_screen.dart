@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,10 +8,12 @@ import 'package:qoin_saas_liveness/qoin_saas_liveness.dart';
 
 class CameraScreen extends StatefulWidget {
   final bool testMode;
+  final Function(String image)? callback;
 
   const CameraScreen({
     this.testMode = false,
     super.key,
+    this.callback,
   });
 
   @override
@@ -16,6 +21,49 @@ class CameraScreen extends StatefulWidget {
 }
 
 class _CameraScreenState extends State<CameraScreen> {
+  String? captured;
+  void actionTakePicture(BuildContext context) async {
+    if (cameraController != null) {
+      XFile? data = await SaasLivenessHelper.takePicture(
+        cameraController!,
+      );
+
+      if (data != null) {
+        debugPrint('data captured $data');
+        XFile? imageCaptured;
+        imageCaptured = data;
+        File tempImage;
+        tempImage = File(
+          imageCaptured.path, // DISINI ERRORNYA
+        );
+        var bytes = await tempImage.readAsBytes();
+        captured = base64Encode(bytes);
+        debugPrint('tempImage ${tempImage.path}');
+        widget.callback!.call(captured!);
+        // cameraController?.dispose();
+        Navigator.pop(context);
+      } else {
+        //
+      }
+    }
+  }
+
+  void actionTakePictureV2(BuildContext context) async {
+    if (cameraController != null) {
+      String? data = await SaasLivenessHelper.takePictureAsBase64(
+        cameraController!,
+      );
+      if (data != null) {
+        captured = data;
+        widget.callback!.call(captured!);
+        // ignore: use_build_context_synchronously
+        Navigator.pop(context);
+      } else {
+        //
+      }
+    }
+  }
+
   String currentAction = "notyet";
   CameraController? cameraController;
   @override
@@ -75,6 +123,22 @@ class _CameraScreenState extends State<CameraScreen> {
                       style: GoogleFonts.mukta(
                         color: Colors.white,
                         fontSize: 30,
+                      ),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // actionTakePicture(context);
+                      actionTakePictureV2(context);
+                    },
+                    child: Text(
+                      'Take Picture',
+                      style: GoogleFonts.mukta(
+                        color: Colors.white,
+                        fontSize: 16,
                       ),
                     ),
                   ),

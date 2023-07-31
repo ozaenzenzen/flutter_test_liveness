@@ -151,7 +151,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(width: 15),
                   ElevatedButton(
                     onPressed: () {
-                      dataGambar = null;
+                      setState(() {
+                        dataGambar = null;
+                      });
                       Navigator.push(
                         context,
                         MaterialPageRoute(

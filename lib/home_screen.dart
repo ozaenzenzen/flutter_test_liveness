@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_test_liveness/camera_screen.dart';
+import 'package:flutter_test_liveness/camera_ocr_screen.dart';
+import 'package:flutter_test_liveness/camera_liveness_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:qoin_saas_liveness/qoin_saas_liveness.dart';
 
@@ -66,8 +67,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 "Flutter Test Liveness",
                 style: GoogleFonts.mukta(),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Wrap(
+                alignment: WrapAlignment.center,
                 children: [
                   ElevatedButton(
                     onPressed: () {
@@ -76,35 +77,31 @@ class _HomeScreenState extends State<HomeScreen> {
                         MaterialPageRoute(
                           builder: (context) {
                             return const QoinSaasOCRCameraMLKitVer();
-                            // return CameraScreenTest();
-                            // return Test2Widget();
-                            // return const CameraScreen(
-                            //   testMode: false,
-                            // );
                           },
                         ),
                       );
                     },
                     child: Text(
-                      "Test OCR 0",
+                      "Test OCR ML Kit",
                       style: GoogleFonts.mukta(),
                     ),
                   ),
                   const SizedBox(width: 15),
                   ElevatedButton(
                     onPressed: () {
-                      setState(() {
-                        dataOcr = null;
-                      });
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return QoinSaasOCRCamera(
-                              onTakePict: (String base64Image) {
-                                debugPrint('base64Image output $base64Image');
-                              },
+                            return const CameraOCRScreen(
+                              testMode: false,
                             );
+                            // return const QoinSaasOCRCameraMLKitVer();
+                            // return CameraScreenTest();
+                            // return Test2Widget();
+                            // return const CameraScreen(
+                            //   testMode: false,
+                            // );
                           },
                         ),
                       );
@@ -118,13 +115,63 @@ class _HomeScreenState extends State<HomeScreen> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
+                        dataOcr = null;
+                      });
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const CameraOCRScreen(
+                              testMode: true,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Test OCR Test Mode",
+                      style: GoogleFonts.mukta(),
+                    ),
+                  ),
+                  const SizedBox(width: 15),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
                         dataGambar = null;
                       });
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return CameraScreen(
+                            return CameraLivenessScreen(
+                              testMode: false,
+                              callback: (String image) {
+                                setState(() {
+                                  dataGambar = image;
+                                });
+                              },
+                            );
+                            // return const TextRecognizerView();
+                          },
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Test Liveness (Face Recognition)",
+                      style: GoogleFonts.mukta(),
+                    ),
+                  ),
+                  const SizedBox(width: 15),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        dataGambar = null;
+                      });
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return CameraLivenessScreen(
                               testMode: true,
                               callback: (String image) {
                                 setState(() {
@@ -138,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     },
                     child: Text(
-                      "Test Liveness (FR)",
+                      "Test Liveness (Face Recognition) Test Mode",
                       style: GoogleFonts.mukta(),
                     ),
                   ),

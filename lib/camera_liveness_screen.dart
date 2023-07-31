@@ -6,25 +6,25 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:qoin_saas_liveness/qoin_saas_liveness.dart';
 
-class CameraScreen extends StatefulWidget {
+class CameraLivenessScreen extends StatefulWidget {
   final bool testMode;
   final Function(String image)? callback;
 
-  const CameraScreen({
+  const CameraLivenessScreen({
     this.testMode = false,
     super.key,
     this.callback,
   });
 
   @override
-  State<CameraScreen> createState() => _CameraScreenState();
+  State<CameraLivenessScreen> createState() => _CameraLivenessScreenState();
 }
 
-class _CameraScreenState extends State<CameraScreen> {
+class _CameraLivenessScreenState extends State<CameraLivenessScreen> {
   String? captured;
   void actionTakePicture(BuildContext context) async {
     if (cameraController != null) {
-      XFile? data = await SaasLivenessHelper.takePicture(
+      XFile? data = await SaasLivenessHelper().takePicture(
         cameraController!,
       );
 
@@ -50,11 +50,12 @@ class _CameraScreenState extends State<CameraScreen> {
 
   void actionTakePictureV2(BuildContext context) async {
     if (cameraController != null) {
-      String? data = await SaasLivenessHelper.takePictureAsBase64(
+      String? data = await SaasLivenessHelper().takePictureAsBase64(
         cameraController!,
       );
       if (data != null) {
         captured = data;
+        debugPrint('captured ${captured}');
         widget.callback!.call(captured!);
         // ignore: use_build_context_synchronously
         Navigator.pop(context);
@@ -71,7 +72,7 @@ class _CameraScreenState extends State<CameraScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Flutter Test Liveness Camera",
+          (widget.testMode) ? "Flutter Test Liveness FR Test Mode" : "Flutter Test Liveness FR",
           style: GoogleFonts.mukta(),
         ),
       ),

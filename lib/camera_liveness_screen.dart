@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:qoin_saas_liveness/qoin_saas_liveness.dart';
+import 'package:qoin_saas_liveness/saas_mlkit.dart';
 
 class CameraLivenessScreen extends StatefulWidget {
   final bool testMode;

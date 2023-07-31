@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test_liveness/camera_ocr_screen.dart';
 import 'package:flutter_test_liveness/camera_liveness_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:qoin_saas_liveness/qoin_saas_liveness.dart';
+import 'package:qoin_saas_liveness/saas_mlkit.dart';
 
 class HomeScreen extends StatefulWidget {
   final int motionCount;

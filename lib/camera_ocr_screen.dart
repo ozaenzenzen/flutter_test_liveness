@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:qoin_saas_liveness/saas_mlkit.dart';
+import 'package:saas_mlkit/saas_mlkit.dart';
 
 class CameraOCRScreen extends StatefulWidget {
   final bool testMode;

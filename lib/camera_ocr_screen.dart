@@ -16,12 +16,13 @@ class CameraOCRScreen extends StatefulWidget {
 
 class _CameraOCRScreenState extends State<CameraOCRScreen> {
   CameraController? cameraController;
+  bool isLoadingScreen = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.testMode ? "Flutter Test OCR Camera Test Mode" :"Flutter Test OCR Camera",
+          widget.testMode ? "Flutter Test OCR Camera Test Mode" : "Flutter Test OCR Camera",
           style: GoogleFonts.mukta(),
         ),
       ),
@@ -70,7 +71,37 @@ class _CameraOCRScreenState extends State<CameraOCRScreen> {
                   onTextDetected: (RecognizedText recognizedText) {
                     debugPrint('data recognizedText ${recognizedText.text}');
                   },
+                  onLoading: (bool isLoading) {
+                    setState(() {
+                      isLoadingScreen = isLoading;
+                    });
+                  },
                 ),
+                if (isLoadingScreen)
+                  Container(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    color: Colors.black.withOpacity(0.5),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: CircularProgressIndicator(),
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          'Proses Sedang Berlangsung',
+                          style: GoogleFonts.mukta(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
               ],
             )
           : Stack(

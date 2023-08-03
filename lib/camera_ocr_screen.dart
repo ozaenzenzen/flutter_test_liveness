@@ -5,8 +5,11 @@ import 'package:saas_mlkit/saas_mlkit.dart';
 
 class CameraOCRScreen extends StatefulWidget {
   final bool testMode;
+  final Function(String? textDetected)? callback; 
+
   const CameraOCRScreen({
     super.key,
+    this.callback,
     this.testMode = false,
   });
 
@@ -17,6 +20,14 @@ class CameraOCRScreen extends StatefulWidget {
 class _CameraOCRScreenState extends State<CameraOCRScreen> {
   CameraController? cameraController;
   bool isLoadingScreen = false;
+
+  @override
+  void dispose() {
+    cameraController?.dispose();
+    cameraController = null;
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,6 +81,8 @@ class _CameraOCRScreenState extends State<CameraOCRScreen> {
                   },
                   onTextDetected: (RecognizedText recognizedText) {
                     debugPrint('data recognizedText ${recognizedText.text}');
+                    widget.callback?.call(recognizedText.text);
+                    Navigator.pop(context);
                   },
                   onLoading: (bool isLoading) {
                     setState(() {

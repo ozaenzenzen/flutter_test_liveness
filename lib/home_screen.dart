@@ -121,8 +121,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return const CameraOCRScreen(
+                            return CameraOCRScreen(
                               testMode: true,
+                              callback: (String? textDetected) {
+                                debugPrint('data');
+                                setState(() {
+                                  dataOcr = textDetected;
+                                });
+                              },
                             );
                           },
                         ),

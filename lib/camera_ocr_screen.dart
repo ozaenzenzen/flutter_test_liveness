@@ -21,12 +21,12 @@ class _CameraOCRScreenState extends State<CameraOCRScreen> {
   CameraController? cameraController;
   bool isLoadingScreen = false;
 
-  @override
-  void dispose() {
-    cameraController?.dispose();
-    cameraController = null;
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   cameraController!.dispose();
+  //   cameraController = null;
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
